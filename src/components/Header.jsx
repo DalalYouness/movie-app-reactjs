@@ -1,4 +1,4 @@
-import React from "react";
+import "./Header.css";
 
 const Header = () => {
   return (
@@ -7,16 +7,20 @@ const Header = () => {
         <h1 className="header-title">Movies</h1>
         <nav className="header-nav">
           <ul className="nav-list">
-            <li className="nav-item">
+            <li>
               <a href="#home" className="nav-link">
                 Watch List
               </a>
             </li>
-            <li className="nav-item">
-              <a href="#wacther">Watched</a>
+            <li>
+              <a href="#wacther" className="nav-link">
+                Watched
+              </a>
             </li>
-            <li className="nav-item add-item">
-              <a href="#add">Add</a>
+            <li>
+              <a href="#add" className="nav-link btn">
+                Add
+              </a>
             </li>
           </ul>
         </nav>

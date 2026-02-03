@@ -1,0 +1,28 @@
+.add-page {
+  margin-top: 50px;
+}
+
+.add-content {
+  width: 100%;
+  display: flex;
+  justify-content: center;
+}
+
+.add-content input {
+  width: 400px;
+  height: 35px;
+  border-radius: 10px;
+  -webkit-border-radius: 10px;
+  -moz-border-radius: 10px;
+  -ms-border-radius: 10px;
+  -o-border-radius: 10px;
+  background-color: var(--primary-color);
+  color: white;
+  border: none;
+  padding: 10px;
+  caret-color: white;
+}
+
+.add-content input:focus {
+  outline: none;
+}
