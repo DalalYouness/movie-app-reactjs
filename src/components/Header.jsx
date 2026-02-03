@@ -1,3 +1,4 @@
+import { NavLink } from "react-router";
 import "./Header.css";
 
 const Header = () => {
@@ -8,19 +9,19 @@ const Header = () => {
         <nav className="header-nav">
           <ul className="nav-list">
             <li>
-              <a href="#home" className="nav-link">
+              <NavLink to={"/"} className="nav-link">
                 Watch List
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#wacther" className="nav-link">
+              <NavLink to={"/watched"} className="nav-link">
                 Watched
-              </a>
+              </NavLink>
             </li>
             <li>
-              <a href="#add" className="nav-link btn">
+              <NavLink to={"/add"} className="nav-link btn">
                 Add
-              </a>
+              </NavLink>
             </li>
           </ul>
         </nav>
