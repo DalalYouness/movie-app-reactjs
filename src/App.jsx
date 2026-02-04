@@ -6,6 +6,7 @@ import Watched from "./components/Watched";
 function App() {
   return (
     <BrowserRouter>
+      {/* on peut creer une layout est on utilise le outlet */}
       <Header />
       <Routes>
         <Route path="/" element={<WatchList />} />
