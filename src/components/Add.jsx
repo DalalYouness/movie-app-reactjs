@@ -4,23 +4,28 @@ import axios from "axios";
 import MovieCard from "./MovieCard";
 
 const Add = () => {
-  const [searchValue, setsearchValue] = useState("");
+  const [searchValue, setSearchValue] = useState("");
   const [movies, setMovies] = useState([]);
 
   useEffect(() => {
-    axios
-      .get(`http://www.omdbapi.com?s=${searchValue}&apikey=830096d0`)
-      .then((response) => {
-        if (response.data.Search) {
-          setMovies(response.data.Search);
-        }
-      })
-      .catch((error) => console.log(error));
+    if (searchValue.length < 3) {
+      setMovies([]);
+      return;
+    }
+    if (searchValue.length > 3) {
+      axios
+        .get(`http://www.omdbapi.com?s=${searchValue}&apikey=830096d0`)
+        .then((response) => {
+          if (response.data.Search) {
+            setMovies(response.data.Search);
+          }
+        })
+        .catch((error) => console.log(error));
+    }
   }, [searchValue]);
 
   const handleChange = (e) => {
-    setsearchValue(e.target.value);
-    //console.log(searchValue.current);
+    setSearchValue(e.target.value);
   };
   return (
     <div className="add-page">
@@ -33,11 +38,13 @@ const Add = () => {
             value={searchValue}
           />
 
-          {movies.length > 0 &&
-            searchValue !== "" &&
-            movies.map((movie) => (
-              <MovieCard key={movie.imdbID} movie={movie} />
-            ))}
+          {movies.length > 0 && (
+            <ul>
+              {movies.map((movie) => (
+                <li key={movie.imdbID}>{<MovieCard movie={movie} />}</li>
+              ))}
+            </ul>
+          )}
         </div>
       </div>
     </div>
