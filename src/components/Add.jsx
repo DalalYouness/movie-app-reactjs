@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import "./Add.css";
 import axios from "axios";
+import MovieCard from "./MovieCard";
 
 const Add = () => {
   const [searchValue, setsearchValue] = useState("");
@@ -13,8 +14,8 @@ const Add = () => {
         if (response.data.Search) {
           setMovies(response.data.Search);
         }
-        //console.log(response.data);
-      });
+      })
+      .catch((error) => console.log(error));
   }, [searchValue]);
 
   const handleChange = (e) => {
@@ -31,13 +32,12 @@ const Add = () => {
             onChange={handleChange}
             value={searchValue}
           />
-          {movies.length > 0 && (
-            <ul className="results">
-              {movies.map((movie) => (
-                <li key={movie.imdbID}>{movie.Title}</li>
-              ))}
-            </ul>
-          )}
+
+          {movies.length > 0 &&
+            searchValue !== "" &&
+            movies.map((movie) => (
+              <MovieCard key={movie.imdbID} movie={movie} />
+            ))}
         </div>
       </div>
     </div>
