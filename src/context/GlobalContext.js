@@ -1,4 +1,5 @@
-import { Children, createContext, useReducer } from "react";
+import { Children, createContext, useContext, useReducer } from "react";
+import reducer from "./reducer";
 
 /* creation du global context : mini store/mini redux */
 const initialState = {
@@ -36,6 +37,10 @@ const ContextProvider = ({ children }) => {
       {/* les composants qui vont beneficier de context grace au provider */}
     </GlobalContext.Provider>
   );
+};
+
+export const useMovies = () => {
+  return useContext(GlobalContext); //comme ca maghan7tajch anaho kola mera nbqa ndir useContext kans7yb customHook
 };
 
 export default ContextProvider;
