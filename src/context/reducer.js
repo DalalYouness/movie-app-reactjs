@@ -1,4 +1,3 @@
-import WatchList from "../components/WatchList.jsx";
 import * as actions from "./ActionTypes.js";
 const reducer = (state, action) => {
   switch (action.type) {
@@ -12,6 +11,31 @@ const reducer = (state, action) => {
       return {
         ...state,
         watchList: state.watchList.filter(
+          (movie) => movie.imdbID !== action.payload,
+        ),
+      };
+
+    case actions.MOVE_TO_WATCH_LIST:
+      return {
+        ...state,
+        watchList: [action.payload, ...state.watchList],
+        watched: state.watched.filter((movie) => {
+          movie.imdbID !== action.payload.imdbID;
+        }),
+      };
+
+    case actions.ADD_TO_WATCHED:
+      return {
+        ...state,
+        watchList: state.watchList.filter(
+          (movie) => movie.imdbID !== action.payload.imdbID,
+        ),
+        watched: [action.payload, ...state.watched],
+      };
+    case actions.REMOVE_FROM_WATCHED:
+      return {
+        ...state,
+        watched: state.watched.filter(
           (movie) => movie.imdbID !== action.payload,
         ),
       };
