@@ -40,3 +40,9 @@
   margin-right: 5px;
   font-weight: bold;
 }
+
+.btn-movie:hover {
+  background-color: white;
+  color: var(--secondary-color);
+  border: 1px solid var(--secondary-color);
+}
