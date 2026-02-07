@@ -3,6 +3,8 @@ import Header from "../src/components/Header";
 import Add from "../src/components/Add";
 import WatchList from "./components/WatchList";
 import Watched from "./components/Watched";
+import ContextProvider from "./context/ContextProvider";
+
 function App() {
   return (
     <BrowserRouter>

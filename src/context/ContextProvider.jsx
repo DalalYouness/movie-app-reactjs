@@ -1,19 +1,6 @@
-import { Children, createContext, useContext, useReducer } from "react";
+import { useReducer } from "react";
 import reducer from "./reducer";
-
-/* creation du global context : mini store/mini redux */
-const initialState = {
-  watchList: [],
-  watched: [],
-};
-
-export const GlobalContext = createContext(initialState);
-
-/* on sait que pour utiliser le context
-   on a besoin d'un composant provider
-   tous les childrens au sein de ce provider
-   peuvent acceder au global context
-*/
+import { GlobalContext, initialState } from "./GlobalContext";
 
 const ContextProvider = ({ children }) => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -30,17 +17,15 @@ const ContextProvider = ({ children }) => {
       value={{
         watchList: state.watchList,
         watched: state.watched,
-        moviesDispatch: dispatch,
+        moviesDispatch: dispatch, //dispatch providetha l context fhal minredux bach bnadem yqdr manha ysift l action li baghu ydir bach haka la methode reducer ghadi y executeha react
+        //mnin ghada t executa ghada trj3 state jdida react gha y3awd ydir re-render l provider ol provider ghay3wd
+        //ysift values jdida l context o haka les composant li ghay7tajo l values jdida ghadin y accedew l provider
       }}
     >
       {children}
       {/* les composants qui vont beneficier de context grace au provider */}
     </GlobalContext.Provider>
   );
-};
-
-export const useMovies = () => {
-  return useContext(GlobalContext); //comme ca maghan7tajch anaho kola mera nbqa ndir useContext kans7yb customHook
 };
 
 export default ContextProvider;
